@@ -25,10 +25,8 @@ def scrape_page(url):
         "domain": get_domain(url)
     }
 
-def get_internal_links(domain, soup):
-    internal = set()
-    for link in soup.find_all('a', href=True):
-        href = urljoin(domain, link['href']).rstrip('/')
-        if href.startswith(domain):
-            internal.add(href)
-    return internal
+def get_internal_links(soup):
+  links = []
+  for link in soup.find_all('a', href=True): 
+    links.append(link['href'])
+  return links
